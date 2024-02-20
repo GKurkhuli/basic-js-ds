@@ -88,33 +88,33 @@ class BinarySearchTree {
     }
   }
   removeNode(node, data) {
-    if (!node) {
-      return node;
-    }
-  
-    if (node.data > data) {
-      node.left = this.removeNode(node.left, data);
-    } else if (node.data < data) {
-      node.right = this.removeNode(node.right, data);
-    } else {
-      if (!node.left && !node.right) {
-        return null;
-      }
-      if (!node.left) {
-        return node.right;
-      }
-      if (!node.right) {
-        return node.left;
-      }
-  
-      const minRight = this.min(node.right);
-      node.data = minRight;
-      node.right = this.removeNode(node.right, minRight);
-    }
-    
+  if (!node) {
     return node;
   }
+
+  if (node.data > data) {
+    node.left = this.removeNode(node.left, data);
+  } else if (node.data < data) {
+    node.right = this.removeNode(node.right, data);
+  } else {
+    if (!node.left && !node.right) {
+      return null;
+    }
+    if (!node.left) {
+      return node.right;
+    }
+    if (!node.right) {
+      return node.left;
+    }
+
+    const minRight = this.min(node.right);
+    node.data = minRight;
+    node.right = this.removeNode(node.right, minRight);
+  }
   
+  return node;
+}
+
   min(node = this.rootNode) {
     if(this.isEmpty()){
       return null;
